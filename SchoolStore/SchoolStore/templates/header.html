@@ -1,0 +1,50 @@
+{% load static %}
+        <header id="header" id="home">
+	  		<div class="header-top">
+	  			<div class="container">
+			  		<div class="row">
+			  			<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
+			  				<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-behance"></i></a></li>
+			  				</ul>
+			  			</div>
+			  			<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
+			  				<a href="tel:+953 259 2658 698"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 259 2658 698</span></a>
+			  				<a href="mailto:support@education.com"><span class="lnr lnr-envelope"></span> <span class="text">support@education.com</span></a>
+			  			</div>
+			  		</div>
+	  			</div>
+			</div>
+
+<div class="container main-menu">
+		    	<div class="row align-items-center justify-content-between d-flex">
+			      <div id="logo">
+			        <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+			      </div>
+			      <nav id="nav-menu-container">
+			        <ul class="nav-menu">
+			          <li><a href="{% url 'store:allDept' %}">Home</a></li>
+						{% if user.is_authenticated %}
+									<li>Hello {{user.username}}</li>
+									<li><a href="/credentials/logout">Logout</a></li>
+									{% else %}
+									<li><a href="/credentials/register">Sign Up</a></li>
+									<li><a href="/credentials/login">Sign In</a></li>
+									{% endif %}
+			          <li class="menu-has-children"><a href="{% url 'store:allDept' %}">Departments</a>
+						  <ul>
+							  {% for dept in links %}
+							<li>
+								<a class="dropdown-item" href="{{ dept.get_url }}">{{ dept.name }}</a></li>
+							  {% endfor %}
+						  </ul>
+			          </li>
+
+			        </ul>
+			      </nav><!-- #nav-menu-container -->
+		    	</div>
+		    </div>
+		  </header><!-- #header -->

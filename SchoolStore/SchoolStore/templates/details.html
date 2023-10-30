@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- start banner Area -->
+			<section class="banner-area relative about-banner" id="home">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Fill out the Details
+							</h1>
+							<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/studentDetails"> Details</a></p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+<!-- Start contact-page Area -->
+			<section class="contact-page-area section-gap">
+
+				<div class="container">
+
+					<div class="row">
+
+
+						<div class="col-lg-4 d-flex flex-column address-wrap">
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-home"></span>
+								</div>
+								<div class="contact-details">
+									<h5>Binghamton, New York</h5>
+									<p>
+										4343 Hinkle Deegan Lake Road
+									</p>
+								</div>
+							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-phone-handset"></span>
+								</div>
+								<div class="contact-details">
+									<h5>+953 259 2658 698</h5>
+									<p>Mon to Fri 9am to 4 pm</p>
+								</div>
+							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-envelope"></span>
+								</div>
+								<div class="contact-details">
+									<h5>support@education.com</h5>
+									<p>Send us your query anytime!</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-8">
+
+							<form class="form-area contact-form text-left" action="add_studDetails"  method="POST">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-lg-6 form-group">
+										<input name="name" placeholder="Enter your Fullname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Fullname'" class="common-input mb-20 form-control" required="" type="text">
+										<input name="dob" placeholder="Enter your Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Date of Birth'" class="common-input mb-20 form-control" required="" type="date">
+										<input name="age" placeholder="Enter your Age" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Age'" class="common-input mb-20 form-control" required="" type="text">
+										<select name="gender" class="mb-20 form-control" style="color: #777777;font-family: Poppins,sans-serif;font-size: 13px;font-weight: 300;line-height: 1.625em;">
+											<option selected>Select your Gender</option>
+											<option  value="Male">Male</option>
+											<option  value="Female">Female</option>
+											<option  value="Other">Other</option>
+										</select>
+										<input name="address" placeholder="Enter your Address (House #/Name and Place)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Address (House #/Name and Place)'" class="common-input mb-20 form-control" type="text">
+										<input name="phn" placeholder="Enter your Contact Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Contact Number'" class="common-input mb-20 form-control" required="" type="text">
+
+                                    </div>
+									<div class="col-lg-6 form-group">
+										<input name="email" placeholder="Enter your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Email Address'" class="common-input mb-20 form-control" required="" type="email">
+										<select name="department" id="department" class="mb-20 form-control" style="color: #777777;font-family: Poppins,sans-serif;font-size: 13px;font-weight: 300;line-height: 1.625em;">
+											<option selected> Select your Department</option>
+											{% for dept in links %}
+											<option value="{{dept.id}}">{{dept.name}}</option>
+											{% endfor %}
+										</select>
+										<select name="course" id="course" class="mb-20 form-control" style="color: #777777;font-family: Poppins,sans-serif;font-size: 13px;font-weight: 300;line-height: 1.625em;">
+											<option>Select your Course</option>
+										</select>
+
+										<div class="form-group">
+											<label> Materials Provide</label><br>
+											<input class="" type="checkbox" name="material1" value="Debit Notebook">
+											<label>Debit Notebook</label>&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" name="material2" value="Pen">
+											<label>Pen</label>&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" name="material3" value="Exam Papers">
+											<label>Exam Papers</label>
+										</div>
+										<select name="purpose"  class="mb-20 form-control" style="color: #777777;font-family: Poppins,sans-serif;font-size: 13px;font-weight: 300;line-height: 1.625em;">
+											<option>Select your Purpose</option>
+											<option>Enquiry</option>
+											<option>Place Order</option>
+											<option>Return</option>
+										</select>
+										<input class="btn btn-primary" style="float:right;" type="submit" value="Save and Logout">
+
+									</div>
+								</div>
+							<div class="row">
+									<div class="col-lg-4">
+										<div class="alert-msg" style="text-align: left;"></div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+	$('#department').change(function(){
+	$('#course').empty();
+	var dept;
+	dept = $(this).val()
+	console.log(dept)
+	$.ajax({
+	type : "POST",
+	url: "/course_list/",
+	headers: {'X-CSRFToken': '{{ csrf_token }}'},
+	data: { 'deptName':dept },
+	datatype:'json',
+	success:function(response){
+     for (i in response) {
+     data = JSON.parse(response)[i]["fields"]["name"];
+     $('#course').append("<option value=" + data + ">" + data + "</option>>")
+     console.log(data);
+     }
+	}
+	});
+	});
+
+
+</script>
+{% endblock %}

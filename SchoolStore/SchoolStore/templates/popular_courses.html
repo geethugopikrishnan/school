@@ -1,0 +1,43 @@
+{% load static %}
+<!-- Start popular-course Area -->
+			<section class="popular-course-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Main Departments We have</h1>
+								<p>There is a moment in the life of any aspiring.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="active-popular-carusel">
+							{% for dept in links %}
+							<div class="single-popular-carusel">
+								<div class="thumb-wrap relative">
+									<div class="thumb relative">
+										<div class="overlay overlay-bg"></div>
+										<a href="{{ dept.get_url }}"><img class="img-fluid" src="{{dept.image.url}}" alt="No image" style="height:11rem"></a>
+									</div>
+									<div class="meta d-flex justify-content-between">
+										<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
+										<h4></h4>
+									</div>
+								</div>
+								<div class="details">
+									<a href="{{ dept.get_url }}">
+										<h4>
+											{{ dept.name }}
+										</h4>
+									</a>
+									<p class="text-justify" style="height:9rem">
+										{{ dept.description }}
+									</p>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End popular-course Area -->

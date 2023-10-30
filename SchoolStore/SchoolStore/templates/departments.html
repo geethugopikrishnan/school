@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- start banner Area -->
+			<section class="banner-area relative">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+                    {% if department %}
+					<div class="row fullscreen d-flex align-items-center justify-content-between">
+						<div class="banner-content col-lg-9 col-md-12">
+							<h1 class="text-uppercase">
+								{{ department.name }}
+							</h1>
+							<p class="pt-10 pb-10">
+								{{ department.description }}
+                            </p>
+							{% if user.is_authenticated %}
+							<a href="/credentials/studentDetails" class="primary-btn text-uppercase">Save your Details</a>
+							{% else %}
+							<a href="/credentials/login" class="primary-btn text-uppercase">Get Started</a>
+							{% endif %}
+						</div>
+						{% endif%}
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+{% include 'popular_courses.html' %}
+{% endblock %}
